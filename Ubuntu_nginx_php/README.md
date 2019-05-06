@@ -22,9 +22,9 @@ sudo apt-get install libtool
 
 > Nginx是高度自由化的web服务器，它的功能是由许多模块来支持，此处安装的Nginx，是最简化版的Nginx，仅仅支持Nginx的基本功能，如果需要更多的功能，可以重新编译安装更多的模块。不同模块的编译安装，需要安装不同的依赖库，此处安装的Nginx需要的依赖库是三个：
 
-- `pcre`库：支持重写rewrite功能
-- `zlib`库：支持gzip压缩
-- `openssl`库：支持ssl功能
+- **`pcre`库：**支持重写rewrite功能
+- **`zlib`库：**支持gzip压缩
+- **`openssl`库：**支持ssl功能
 
 > 此处安装的依赖库是系统自带的版本，如果需要安装最新版本，可以单独下载编译安装，但需要注意的是在Nginx编译安装时，需要把单独安装的依赖库加载进去（使用`--with`加载）。下面是系统自带依赖库安装过程
 
@@ -67,13 +67,57 @@ nginx http access log file: "/usr/local/nginx/logs/access.log"
 
 > 主要文件地址
 
+- **配置文件：**
+
 ```
-配置文件：/usr/local/nginx/conf/nginx.conf
-程序文件：/usr/local/nginx/sbin/nginx
-网站目录：/usr/local/nginx/html/
+/usr/local/nginx/conf/nginx.conf
 ```
 
-### 0x03 Nginx常用命令
+- **程序文件：**
+
+```
+/usr/local/nginx/sbin/nginx
+```
+
+- **网站目录：**
+
+```
+/usr/local/nginx/html/
+```
+
+
+### 0x03 Nginx配置和启动
+
+> 目前安装的Nginx，已经能正常解析HTML页面，但是仍然不能解析PHP页面，需要后续安装PHP解释器，为了支持后续的PHP解析，此时先对Nginx进行配置，不同需求的Nginx，最终的配置文件不同，此处仅仅给出简单的Nginx配置
+
+```
+sudo vim /usr/local/nginx/conf/nginx.conf
+```
+
+> 修改`nginx.conf`如下
+
+```
+location ~ \.php$ {
+            root           html;
+            fastcgi_pass   127.0.0.1:9000;
+            fastcgi_index  index.php;
+            fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+            include        fastcgi_params;
+        }
+```
+
+> 配置修改之后，对配置文件的语法进行检查，并开启Nginx服务（[Nginx常用命令](0x04-Nginx常用命令)）
+
+```
+sudo /usr/local/nginx/sbin/nginx -t
+sudo /usr/local/nginx/sbin/nginx
+```
+
+> 访问本机地址，看到如下页面，表示Nginx安装成功
+
+![nginx_php_0001](https://github.com/GHlyanin/Environmental-construction/master/Ubuntu_nginx_php/image/nginx_php_0001.PNG)
+
+### 0x04 Nginx常用命令
 
 > Nginx程序安装目录在`/usr/local/nginx/sbin/`，以下给出指定安装目录命令
 
@@ -114,9 +158,8 @@ sudo /usr/local/nginx/sbin/nginx -s reload
 sudo /usr/local/nginx/sbin/nginx -v/-V
 ```
 
-:pencil:**Thinking**  
 
-> 根据以上三个步骤，就能正常开启Nginx服务。目前的Nginx服务器只能解析HTML静态页面，如果要解析PHP动态脚本，需要安装PHP解释器
+
 
 ## PHP安装与配置
 
