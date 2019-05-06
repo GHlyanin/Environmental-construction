@@ -22,9 +22,9 @@ sudo apt-get install libtool
 
 > Nginx是高度自由化的web服务器，它的功能是由许多模块来支持，此处安装的Nginx，是最简化版的Nginx，仅仅支持Nginx的基本功能，如果需要更多的功能，可以重新编译安装更多的模块。不同模块的编译安装，需要安装不同的依赖库，此处安装的Nginx需要的依赖库是三个：
 
-- **`pcre`库：**支持重写rewrite功能
-- **`zlib`库：**支持gzip压缩
-- **`openssl`库：**支持ssl功能
+- **`pcre`库**：支持重写rewrite功能
+- **`zlib`库**：支持gzip压缩
+- **`openssl`库**：支持ssl功能
 
 > 此处安装的依赖库是系统自带的版本，如果需要安装最新版本，可以单独下载编译安装，但需要注意的是在Nginx编译安装时，需要把单独安装的依赖库加载进去（使用`--with`加载）。下面是系统自带依赖库安装过程
 
@@ -106,7 +106,7 @@ location ~ \.php$ {
         }
 ```
 
-> 配置修改之后，对配置文件的语法进行检查，并开启Nginx服务（[Nginx常用命令](0x04-Nginx常用命令)）
+> 配置修改之后，对配置文件的语法进行检查，并开启Nginx服务（[Nginx常用命令](#0x04-Nginx常用命令)）
 
 ```
 sudo /usr/local/nginx/sbin/nginx -t
@@ -115,7 +115,7 @@ sudo /usr/local/nginx/sbin/nginx
 
 > 访问本机地址，看到如下页面，表示Nginx安装成功
 
-![nginx_php_0001](https://github.com/GHlyanin/Environmental-construction/master/Ubuntu_nginx_php/image/nginx_php_0001.PNG)
+![nginx_php_0001](https://github.com/GHlyanin/Environmental-construction/blob/master/Ubuntu_nginx_php/image/nginx_php_0001.PNG)
 
 ### 0x04 Nginx常用命令
 
