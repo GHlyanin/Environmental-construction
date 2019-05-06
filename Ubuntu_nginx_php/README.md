@@ -36,7 +36,7 @@ sudo apt-get install openssl libssl-dev
 
 ### 0x02 编译安装Nginx
 
-> 下载`nginx-xxx`压缩包、解压该压缩包和进入该解压目录
+> 在线下载`nginx-xxx`压缩包、解压该压缩包和进入该解压目录
 
 ```
 wget http://nginx.org/download/nginx-xxx.tar.gz
@@ -158,43 +158,92 @@ sudo /usr/local/nginx/sbin/nginx -s reload
 sudo /usr/local/nginx/sbin/nginx -v/-V
 ```
 
+## 安装PHP
 
+> Nginx解析PHP脚本，需要安装PHP和PHP-FPM进程管理器，PHP5.3版本以后，PHP-FPM已经正式内置在PHP中，不再是第三方补丁包。PHP源代码安装有两种方式：离线下载安装和在线下载安装，此处以离线下载安装为例，演示PHP的编译安装过程
 
+### 0x01 安装依赖库
 
-## PHP安装与配置
-
-
-
-
+> 此处安装的PHP，是最简化版的PHP，仅仅支持PHP的基本功能，如果需要更多的功能，可以重新编译安装更多的模块。不同模块的编译安装，需要安装不同的依赖库，此处安装的PHP需要一个依赖库：
 
 ```
-sudo apt-get install libxml2
-sudo apt-get install libxml2-dev
+sudo apt-get install libxml2 libxml2-dev
+```
 
+### 0x02 编译安装PHP
 
+> 离线下载`php-xxx`压缩包、解压该压缩包和进入该解压目录
+
+```
+tar -zxvf php-xxx
+cd php-xxx/
+```
+
+> 进行编译安装
+
+```
+sudo ./configure --enable-fpm
 sudo make
 sudo make install
+```
+
+> 初始化配置文件
+
+```
+sudo cp php.ini-production /etc/php.ini
+sudo cp /usr/local/etc/php-fpm.conf.default /usr/local/etc/php-fpm.conf
+sudo cp /usr/local/etc/php-fpm.d/www.conf.default /usr/local/etc/php-fpm.d/www.conf
+
+```
 
 
+> 默认安装路径为
 
+```
+Installing PHP CLI binary:        /usr/local/bin/
+Installing PHP CLI man page:      /usr/local/php/man/man1/
+Installing PHP FPM binary:        /usr/local/sbin/
+Installing PHP FPM config:        /usr/local/etc/
+Installing PHP FPM man page:      /usr/local/php/man/man8/
+Installing PHP FPM status page:      /usr/local/php/php/fpm/
+Installing phpdbg binary:         /usr/local/bin/
+Installing phpdbg man page:       /usr/local/php/man/man1/
+Installing PHP CGI binary:        /usr/local/bin/
+Installing PHP CGI man page:      /usr/local/php/man/man1/
+Installing build environment:     /usr/local/lib/php/build/
+Installing header files:          /usr/local/include/php/
+Installing helper programs:       /usr/local/bin/
+```
 
+> 主要文件地址
 
-sudo apt-get install libxml2-dev
-sudo apt-get install build-essential
-sudo apt-get install openssl 
-sudo apt-get install libssl-dev 
-sudo apt-get install make
-sudo apt-get install curl
-sudo apt-get install libcurl4-gnutls-dev
-sudo apt-get install libjpeg-dev
-sudo apt-get install libpng-dev
-sudo apt-get install libmcrypt-dev
-sudo apt-get install libreadline6 libreadline6-dev
+- 配置文件：
+
+```
+/usr/local/nginx/conf/nginx.conf
+```
+
+- 程序文件：
+
+```
+/usr/local/nginx/sbin/nginx
+```
+
+- 网站目录：
+
+```
+/usr/local/nginx/html/
 ```
 
 
 
+### 0x03 PHP配置和启动
 
+
+
+
+
+sudo vim /usr/local/etc/php-fpm.conf
 
 ```
 include=/usr/local/etc/php-fpm.d/*.conf
@@ -202,22 +251,22 @@ include=/usr/local/etc/php-fpm.d/*.conf
 
 
 
-```
-location ~ \.php$ {
-            root           html;
-            fastcgi_pass   127.0.0.1:9000;
-            fastcgi_index  index.php;
-            fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
-            include        fastcgi_params;
-        }
-```
 
-```
-sudo cp /usr/local/etc/php-fpm.conf.default /usr/local/etc/php-fpm.conf
-sudo cp /usr/local/etc/php-fpm.d/www.conf.default /usr/local/etc/php-fpm.d/www.conf
+sudo vim /usr/local/etc/php-fpm.d/www.conf
+
+user = nobody
+group = nobody
+
+user = www-data
+group = www-data
+
+
+sudo  /usr/local/sbin/php-fpm
 
 
 
 
-```
+
+
+
 
