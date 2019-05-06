@@ -22,9 +22,9 @@ sudo apt-get install libtool
 
 > Nginx是高度自由化的web服务器，它的功能是由许多模块来支持，此处安装的Nginx，是最简化版的Nginx，仅仅支持Nginx的基本功能，如果需要更多的功能，可以重新编译安装更多的模块。不同模块的编译安装，需要安装不同的依赖库，此处安装的Nginx需要的依赖库是三个：
 
-- **`pcre`库**：支持重写rewrite功能
-- **`zlib`库**：支持gzip压缩
-- **`openssl`库**：支持ssl功能
+- `pcre`库：支持重写rewrite功能
+- `zlib`库：支持gzip压缩
+- `openssl`库：支持ssl功能
 
 > 此处安装的依赖库是系统自带的版本，如果需要安装最新版本，可以单独下载编译安装，但需要注意的是在Nginx编译安装时，需要把单独安装的依赖库加载进去（使用`--with`加载）。下面是系统自带依赖库安装过程
 
@@ -67,19 +67,19 @@ nginx http access log file: "/usr/local/nginx/logs/access.log"
 
 > 主要文件地址
 
-- **配置文件：**
+- 配置文件：
 
 ```
 /usr/local/nginx/conf/nginx.conf
 ```
 
-- **程序文件：**
+- 程序文件：
 
 ```
 /usr/local/nginx/sbin/nginx
 ```
 
-- **网站目录：**
+- 网站目录：
 
 ```
 /usr/local/nginx/html/
