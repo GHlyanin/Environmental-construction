@@ -1,7 +1,7 @@
 # Nginx + PHP 编译安装
 
-Nginx本身不能处理PHP脚本，它只是一个web服务器，如果收到的请求是PHP，则需要调用PHP解释器进行处理，本文主要介绍Nginx和PHP的在Ubuntu系统中的编译安装过程，Nginx和PHP源代码可以从其官网获取限定版本，或者搜索`index of nginx`和`index of php`从开源网站获取指定版本
-
+Nginx本身不能处理PHP脚本，它只是一个web服务器，如果收到的请求是PHP，则需要调用PHP解释器进行处理，本文主要介绍Nginx和PHP的在Ubuntu系统中的编译安装过程。
+Nginx和PHP源代码可以从其官网获取限定版本，或者搜索`index of nginx`和`index of php`从开源网站获取指定版本：
 - [Nginx官网](http://nginx.org/en/download.html)
 - [PHP官网](https://www.php.net/downloads.php)
 
@@ -16,17 +16,18 @@ sudo apt-get install libtool
 
 ## 安装Nginx
 
-> Nginx源代码安装有两种方式：离线下载安装和在线下载安装，此处以在线下载安装为例，演示Nginx的编译安装过程
+Nginx源代码安装有两种方式：离线下载安装和在线下载安装，此处以在线下载安装为例，演示Nginx的编译安装过程
 
 ### 0x01 安装依赖库
 
-> Nginx是高度自由化的web服务器，它的功能是由许多模块来支持，此处安装的Nginx，是最简化版的Nginx，仅仅支持Nginx的基本功能，如果需要更多的功能，可以重新编译安装更多的模块。不同模块的编译安装，需要安装不同的依赖库，此处安装的Nginx需要的依赖库是三个：
+Nginx是高度自由化的web服务器，它的功能是由许多模块来支持，此处安装的Nginx，是最简化版的Nginx，仅仅支持Nginx的基本功能，如果需要更多的功能，可以重新编译安装更多的模块。
+不同模块的编译安装，需要安装不同的依赖库，此处安装的Nginx需要的依赖库是三个：
 
 - `pcre`库：支持重写rewrite功能
 - `zlib`库：支持gzip压缩
 - `openssl`库：支持ssl功能
 
-> 此处安装的依赖库是系统自带的版本，如果需要安装最新版本，可以单独下载编译安装，但需要注意的是在Nginx编译安装时，需要把单独安装的依赖库加载进去（使用`--with`加载）。下面是系统自带依赖库安装过程
+此处安装的依赖库是系统自带的版本，如果需要安装最新版本，可以单独下载编译安装，但需要注意的是在Nginx编译安装时，需要把单独安装的依赖库加载进去（使用`--with`加载）。下面是系统自带依赖库安装过程
 
 ```
 sudo apt-get install libpcre3 libpcre3-dev  
