@@ -1,13 +1,13 @@
 # Nginx + PHP 编译安装
 
-> Nginx本身不能处理PHP脚本，它只是一个web服务器，如果收到的请求是PHP，则需要调用PHP解释器进行处理，本文主要介绍Nginx和PHP的在Ubuntu系统中的编译安装过程，Nginx和PHP源代码可以从其官网获取限定版本，或者搜索`index of nginx`和`index of php`从开源网站获取指定版本
+Nginx本身不能处理PHP脚本，它只是一个web服务器，如果收到的请求是PHP，则需要调用PHP解释器进行处理，本文主要介绍Nginx和PHP的在Ubuntu系统中的编译安装过程，Nginx和PHP源代码可以从其官网获取限定版本，或者搜索`index of nginx`和`index of php`从开源网站获取指定版本
 
 - [Nginx官网](http://nginx.org/en/download.html)
 - [PHP官网](https://www.php.net/downloads.php)
 
 ## 安装编译平台
 
-> Ubuntu缺省情况下，没有提供C/C++的编译环境，但是Ubuntu提供了一个`build-essential`软件包，安装了该软件包，编译c/c++所需要的软件包都会被安装；`libtool`是一个通用库支持脚本，将使用动态库的复杂性隐藏在统一、可移植的接口中，主要的一个作用是在编译大型软件的过程中解决了库的依赖问题
+Ubuntu缺省情况下，没有提供C/C++的编译环境，但是Ubuntu提供了一个`build-essential`软件包，安装了该软件包，编译c/c++所需要的软件包都会被安装；`libtool`是一个通用库支持脚本，将使用动态库的复杂性隐藏在统一、可移植的接口中，主要的一个作用是在编译大型软件的过程中解决了库的依赖问题
 
 ```
 sudo apt-get install build-essential
