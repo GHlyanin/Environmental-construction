@@ -268,7 +268,7 @@ pid = run/php-fpm.pid
 include=/usr/local/etc/php-fpm.d/*.conf
 ```
 
-> **Step 2**：配置`www.conf'文件
+> **Step 2**：配置`www.conf`文件
 
 ```
 sudo vim /usr/local/etc/php-fpm.d/www.conf
@@ -288,7 +288,7 @@ groupadd www-data
 useradd -g www-data www-data
 ```
 
-> **Step 3**：启动PHP-FPM服务（[PHP-FPM常用命令](#0x04-PHP-FPM常用命令)）
+> **Step 3**：启动PHP-FPM服务（[PHP-FPM常用命令](#0x04-php-fpm常用命令)）
 
 ```
 sudo /usr/local/sbin/php-fpm
