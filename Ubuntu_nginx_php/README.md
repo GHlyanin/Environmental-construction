@@ -190,12 +190,24 @@ sudo make install
 > 初始化配置文件
 
 ```
-sudo cp php.ini-production /etc/php.ini
+sudo cp php.ini-production /usr/local/lib/php.ini
 sudo cp /usr/local/etc/php-fpm.conf.default /usr/local/etc/php-fpm.conf
 sudo cp /usr/local/etc/php-fpm.d/www.conf.default /usr/local/etc/php-fpm.d/www.conf
 
 ```
 
+:pencil:**Thinking**
+
+> 在编译安装PHP时，如果没有生成`php.ini`文件，可以从PHP编译安装包中复制`php.ini-production`并重命名为`php.ini`，然后把该`php.ini`放到默认安装位置，重新启动即可载入`php.ini`文件。此处有两点说明：
+1. PHP编译安装包中有`php.ini-development`和`php.ini-production`配置文件，前者适合开发环境，后者适合生产环境，后者稳定性更强，因此选择后者
+2. `php.ini`默认安装位置的查找，在网站目录下，建立一个内容如下的`phpinfo.php`文件，打开浏览器访问该文件，`Configuration File (php.ini) Path`指示的路径就是`php.ini`默认安装位置，把`php.ini`放在该位置下重新启动即可
+3. `php.ini`文件的复制和配置，推荐PHP文件能正常解析之后再操作
+
+```
+<?php
+ echo phpinfo();
+?>
+```
 
 > 默认安装路径为
 
@@ -217,51 +229,81 @@ Installing helper programs:       /usr/local/bin/
 
 > 主要文件地址
 
-- 配置文件：
+- PHP配置文件：
 
 ```
-/usr/local/nginx/conf/nginx.conf
+/usr/local/lib/php.ini
+```
+
+- PHP-FPM配置文件：
+
+```
+/usr/local/etc/php-fpm.conf
+/usr/local/etc/php-fpm.d/www.conf
 ```
 
 - 程序文件：
 
 ```
-/usr/local/nginx/sbin/nginx
+/usr/local/sbin/php-fpm
 ```
 
-- 网站目录：
+### 0x03 PHP-FPM配置和启动
+
+> **Step 1**：配置`php-fpm.conf`
 
 ```
-/usr/local/nginx/html/
-```
-
-
-
-### 0x03 PHP配置和启动
-
-
-
-
-
 sudo vim /usr/local/etc/php-fpm.conf
+```
+
+> 去除`pid`前的分号，让其生成`php-fpm.pid`，从而支持PHP-FPM信号控制命令
+
+```
+pid = run/php-fpm.pid
+```
+
+> 修改最后一行为
 
 ```
 include=/usr/local/etc/php-fpm.d/*.conf
 ```
 
+> **Step 2**：配置`www.conf'文件
 
-
-
+```
 sudo vim /usr/local/etc/php-fpm.d/www.conf
+```
 
-user = nobody
-group = nobody
+> 修改PHP-FPM运行用户
 
+```
 user = www-data
 group = www-data
+```
+
+> 如果用户不存在，那么先添加`www-data`用户
+
+```
+groupadd www-data  
+useradd -g www-data www-data
+```
+
+> **Step 3**：启动PHP-FPM服务（[PHP-FPM常用命令](#0x04-PHP-FPM常用命令)）
+
+```
+sudo /usr/local/sbin/php-fpm
+```
+
+> **step 4**：建立一个`phpinfo.php`文件，访问该文件，看到如下页面，表示整体环境搭建成功
+
+![nginx_php_0002](https://github.com/GHlyanin/Environmental-construction/blob/master/Ubuntu_nginx_php/image/nginx_php_0002.PNG)
+
+### 0x04 PHP-FPM常用命令
 
 
-sudo  /usr/local/sbin/php-fpm
+
+
+
 
 
 
