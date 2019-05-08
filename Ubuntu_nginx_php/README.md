@@ -174,7 +174,7 @@ sudo /usr/local/nginx/sbin/nginx -v/-V
 
 ## 安装PHP
 
-Nginx解析PHP脚本，需要安装PHP和PHP-FPM进程管理器，PHP5.3版本以后，PHP-FPM已经正式内置在PHP中，不再是第三方补丁包   
+Nginx解析PHP脚本，需要安装PHP和PHP-FPM进程管理器，PHP5.3.3版本以后，PHP-FPM已经正式内置在PHP中，不再是第三方补丁包，本文PHP安装过程适合PHP5.3.3版本之后   
 
 PHP源代码安装有两种方式：离线下载安装和在线下载安装，此处以离线下载安装为例，演示PHP的编译安装过程
 
