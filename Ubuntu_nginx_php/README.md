@@ -1,6 +1,6 @@
-# Ubuntu 编译安装 Nginx + PHP
+# Nginx + PHP 编译安装
 
-> Nginx本身不能处理PHP脚本，它只是一个web服务器，如果收到的请求是PHP，则需要调用PHP解释器进行处理，本文主要介绍Nginx和PHP的编译安装过程，Nginx和PHP源代码可以从其官网获取限定版本，或者搜索`index of nginx`和`index of php`从开源网站获取指定版本
+> Nginx本身不能处理PHP脚本，它只是一个web服务器，如果收到的请求是PHP，则需要调用PHP解释器进行处理，本文主要介绍Nginx和PHP的在Ubuntu系统中的编译安装过程，Nginx和PHP源代码可以从其官网获取限定版本，或者搜索`index of nginx`和`index of php`从开源网站获取指定版本
 
 - [Nginx官网](http://nginx.org/en/download.html)
 - [PHP官网](https://www.php.net/downloads.php)
@@ -256,7 +256,7 @@ Installing helper programs:       /usr/local/bin/
 sudo vim /usr/local/etc/php-fpm.conf
 ```
 
-> 去除`pid`前的分号，让其生成`php-fpm.pid`，从而支持PHP-FPM信号控制命令
+> 去除`pid`前的分号，让其生成`php-fpm.pid`，从而支持PHP-FPM信号控制
 
 ```
 pid = run/php-fpm.pid
@@ -300,7 +300,51 @@ sudo /usr/local/sbin/php-fpm
 
 ### 0x04 PHP-FPM常用命令
 
+> php5.3.3以后的PHP-FPM不再支持`/usr/local/sbin/php-fpm (start|stop|reload)`等命令，需要使用信号控制
 
+- **启动**
+
+```
+sudo /usr/local/sbin/php-fpm
+```
+
+- **查看PHP-FPM进程（master process）**
+
+```
+ubuntu@ubuntu-virtual-machine:~$ ps aux |grep php-fpm
+root      14506  0.0  0.3  94736  7012 ?        Ss   11:03   0:00 php-fpm: master process (/usr/local/etc/php-fpm.conf)
+www-data  14507  0.0  0.3  97036  6976 ?        S    11:03   0:00 php-fpm: pool www
+www-data  14508  0.0  0.3  97036  6976 ?        S    11:03   0:00 php-fpm: pool www
+ubuntu    14510  0.0  0.0  21536  1064 pts/0    S+   11:03   0:00 grep --color=auto php-fpm
+```
+
+- **关闭**
+
+> 使用进程关闭
+
+```
+sudo kill -INT 14506
+```
+
+> 使用php-fpm.pid关闭，注意命令中不是单引号，是反单引号，即重音符
+
+```
+sudo kill -INT `cat /usr/local/var/run/php-fpm.pid`
+```
+
+- **重启**
+
+> 使用进程重启
+
+```
+sudo kill -USR2 14506
+```
+
+> 使用php-fpm.pid重启，注意命令中不是单引号，是反单引号，即重音符
+
+```
+sudo kill -USR2 `cat /usr/local/var/run/php-fpm.pid`
+```
 
 
 
