@@ -163,7 +163,7 @@ sudo /usr/local/nginx/sbin/nginx -s stop
 sudo /usr/local/nginx/sbin/nginx -s reload
 ```
 
-- **查看版本信息**
+- **版本**
 
 ```
 sudo /usr/local/nginx/sbin/nginx -v/-V
@@ -327,6 +327,12 @@ PHP5.3.3以后的PHP-FPM不再支持`/usr/local/sbin/php-fpm (start|stop|reload)
 
 ```
 sudo /usr/local/sbin/php-fpm
+```
+
+- **版本**
+
+```
+sudo /usr/local/sbin/php-fpm -v
 ```
 
 - **查看PHP-FPM进程（master process）**
