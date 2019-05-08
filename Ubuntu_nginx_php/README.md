@@ -1,6 +1,7 @@
 # Nginx + PHP 编译安装
 
 Nginx本身不能处理PHP脚本，它只是一个web服务器，如果收到的请求是PHP，则需要调用PHP解释器进行处理，本文主要介绍Nginx和PHP的在Ubuntu系统中的编译安装过程    
+
 Nginx和PHP源代码可以从其官网获取限定版本，或者搜索`index of nginx`和`index of php`从开源网站获取指定版本
 - [Nginx官网](http://nginx.org/en/download.html)
 - [PHP官网](https://www.php.net/downloads.php)
@@ -9,7 +10,9 @@ Nginx和PHP源代码可以从其官网获取限定版本，或者搜索`index of
 
 ## 安装编译平台
 
-Ubuntu缺省情况下，没有提供C/C++的编译环境，但是Ubuntu提供了一个`build-essential`软件包，安装了该软件包，编译c/c++所需要的软件包都会被安装   `libtool`是一个通用库支持脚本，将使用动态库的复杂性隐藏在统一、可移植的接口中，主要的一个作用是在编译大型软件的过程中解决了库的依赖问题
+Ubuntu缺省情况下，没有提供C/C++的编译环境，但是Ubuntu提供了一个`build-essential`软件包，安装了该软件包，编译c/c++所需要的软件包都会被安装   
+
+`libtool`是一个通用库支持脚本，将使用动态库的复杂性隐藏在统一、可移植的接口中，主要的一个作用是在编译大型软件的过程中解决了库的依赖问题
 
 ```
 sudo apt-get install build-essential
@@ -25,6 +28,7 @@ Nginx源代码安装有两种方式：离线下载安装和在线下载安装，
 ### 0x01 安装依赖库
 
 Nginx是高度自由化的web服务器，它的功能是由许多模块来支持，此处安装的Nginx，是最简化版的Nginx，仅仅支持Nginx的基本功能，如果需要更多的功能，可以重新编译安装更多的模块   
+
 不同模块的编译安装，需要安装不同的依赖库，此处安装的Nginx需要的依赖库是三个
 
 - `pcre`库：支持重写rewrite功能
@@ -171,11 +175,13 @@ sudo /usr/local/nginx/sbin/nginx -v/-V
 ## 安装PHP
 
 Nginx解析PHP脚本，需要安装PHP和PHP-FPM进程管理器，PHP5.3版本以后，PHP-FPM已经正式内置在PHP中，不再是第三方补丁包   
+
 PHP源代码安装有两种方式：离线下载安装和在线下载安装，此处以离线下载安装为例，演示PHP的编译安装过程
 
 ### 0x01 安装依赖库
 
 此处安装的PHP，是最简化版的PHP，仅仅支持PHP的基本功能，如果需要更多的功能，可以重新编译安装更多的模块   
+
 不同模块的编译安装，需要安装不同的依赖库，此处安装的PHP需要一个依赖库
 
 ```
@@ -188,7 +194,7 @@ sudo apt-get install libxml2 libxml2-dev
 
 ```
 tar -zxvf php-xxx
-cd php-xxx/
+cd php-xxx
 ```
 
 **Step 2**：进行编译安装
@@ -210,9 +216,11 @@ sudo cp /usr/local/etc/php-fpm.d/www.conf.default /usr/local/etc/php-fpm.d/www.c
 
 :pencil:**Thinking**
 
-> 在编译安装PHP时，如果没有生成`php.ini`文件，可以从PHP编译安装包中复制`php.ini-production`并重命名为`php.ini`，然后把该`php.ini`放到默认安装位置，重新启动即可载入`php.ini`文件。此处有三点说明：
-1. PHP编译安装包中有`php.ini-development`和`php.ini-production`配置文件，前者适合开发环境，后者适合生产环境，后者稳定性更强，因此选择后者
-2. `php.ini`默认安装位置的查找，在网站目录下，建立一个内容如下的`phpinfo.php`文件，打开浏览器访问该文件，`Configuration File (php.ini) Path`指示的路径就是`php.ini`默认安装位置，把`php.ini`放在该位置下重新启动即可
+> 在编译安装PHP时，如果没有生成`php.ini`文件，可以从PHP编译安装包中复制`php.ini-production`并重命名为`php.ini`，然后把该`php.ini`放到默认安装位置，重新启动即可载入`php.ini`文件。此处有三点说明：  
+
+1. PHP编译安装包中有`php.ini-development`和`php.ini-production`配置文件，前者适合开发环境，后者适合生产环境，后者稳定性更强，因此选择后者   
+
+2. `php.ini`默认安装位置的查找，在网站目录下，建立一个内容如下的`phpinfo.php`文件，打开浏览器访问该文件，`Configuration File (php.ini) Path`指示的路径就是`php.ini`默认安装位置，把`php.ini`放在该位置下重新启动即可  
 
 ```
 <?php
