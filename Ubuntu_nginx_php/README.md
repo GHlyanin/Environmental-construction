@@ -198,7 +198,7 @@ sudo cp /usr/local/etc/php-fpm.d/www.conf.default /usr/local/etc/php-fpm.d/www.c
 
 :pencil:**Thinking**
 
-> 在编译安装PHP时，如果没有生成`php.ini`文件，可以从PHP编译安装包中复制`php.ini-production`并重命名为`php.ini`，然后把该`php.ini`放到默认安装位置，重新启动即可载入`php.ini`文件。此处有两点说明：
+> 在编译安装PHP时，如果没有生成`php.ini`文件，可以从PHP编译安装包中复制`php.ini-production`并重命名为`php.ini`，然后把该`php.ini`放到默认安装位置，重新启动即可载入`php.ini`文件。此处有三点说明：
 1. PHP编译安装包中有`php.ini-development`和`php.ini-production`配置文件，前者适合开发环境，后者适合生产环境，后者稳定性更强，因此选择后者
 2. `php.ini`默认安装位置的查找，在网站目录下，建立一个内容如下的`phpinfo.php`文件，打开浏览器访问该文件，`Configuration File (php.ini) Path`指示的路径就是`php.ini`默认安装位置，把`php.ini`放在该位置下重新启动即可
 3. `php.ini`文件的复制和配置，推荐PHP文件能正常解析之后再操作
@@ -300,7 +300,7 @@ sudo /usr/local/sbin/php-fpm
 
 ### 0x04 PHP-FPM常用命令
 
-> php5.3.3以后的PHP-FPM不再支持`/usr/local/sbin/php-fpm (start|stop|reload)`等命令，需要使用信号控制
+> PHP5.3.3以后的PHP-FPM不再支持`/usr/local/sbin/php-fpm (start|stop|reload)`等命令，需要使用信号控制
 
 - **启动**
 
@@ -326,7 +326,7 @@ ubuntu    14510  0.0  0.0  21536  1064 pts/0    S+   11:03   0:00 grep --color=a
 sudo kill -INT 14506
 ```
 
-> 使用php-fpm.pid关闭，注意命令中不是单引号，是反单引号，即重音符
+> 使用`php-fpm.pid`关闭，注意命令中不是单引号，是反单引号，即重音符
 
 ```
 sudo kill -INT `cat /usr/local/var/run/php-fpm.pid`
@@ -340,7 +340,7 @@ sudo kill -INT `cat /usr/local/var/run/php-fpm.pid`
 sudo kill -USR2 14506
 ```
 
-> 使用php-fpm.pid重启，注意命令中不是单引号，是反单引号，即重音符
+> 使用`php-fpm.pid`重启，注意命令中不是单引号，是反单引号，即重音符
 
 ```
 sudo kill -USR2 `cat /usr/local/var/run/php-fpm.pid`
