@@ -1,6 +1,7 @@
 # Nginx 编译安装
 
 [Nginx](http://nginx.org/en/) 是一款轻量级的、开源的、高性能的 HTTP 服务器和反向代理服务器，本文主要介绍 Nginx 在 [Ubuntu 18.04.2](https://www.ubuntu.com/download/desktop) 系统中的编译安装过程，经测试该过程适应目前 Nginx 官网所有下载版本（nginx-0.5.38 至 nginx-1.16.0），只是对于 nginx-1.12.2 以下版本，在编译时需要少许设置  
+
 Nginx 源代码可以从其官网获取限定版本，或者搜索 `index of nginx` 和 `index of php` 从开源网站获取指定版本
 
 - [Nginx Download](http://nginx.org/en/download.html)
@@ -10,6 +11,7 @@ Nginx 源代码可以从其官网获取限定版本，或者搜索 `index of ngi
 ## 安装编译平台
 
 [Ubuntu](https://www.ubuntu.com) 缺省情况下，没有提供 C/C++ 的编译环境，但是 Ubuntu 提供了一个 [build-essential](https://code.launchpad.net/ubuntu/+source/build-essential) 软件包，安装了该软件包，编译 C/C++ 所需要的软件包都会被安装  
+
 libtool 是一个通用库支持脚本，将使用动态库的复杂性隐藏在统一、可移植的接口中，主要的一个作用是在编译大型软件的过程中解决了库的依赖问题
 
 ```
@@ -26,6 +28,7 @@ Nginx 源代码安装有两种方式：离线下载安装和在线下载安装�
 ### 0x01 安装依赖库
 
 Nginx 是高度自由化的 web 服务器，它的功能是由许多模块来支持，此处安装的 Nginx，是最简化版的 Nginx，仅仅支持 Nginx 的基本功能，如果需要更多的功能，可以重新编译安装更多的模块  
+
 不同模块的编译安装，需要安装不同的依赖库，此处安装的 Nginx 需要的依赖库是三个
 
 - pcre 库：支持重写 rewrite 功能
