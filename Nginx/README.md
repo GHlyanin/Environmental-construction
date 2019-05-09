@@ -3,7 +3,7 @@
 [Nginx](http://nginx.org/en/) 是一款轻量级的、开源的、高性能的 HTTP 服务器和反向代理服务器，本文主要介绍 Nginx 在 [Ubuntu 18.04.2](https://www.ubuntu.com/download/desktop) 系统中的编译安装过程，经测试该过程适应目前 Nginx 官网所有下载版本（nginx-0.5.38 至 nginx-1.16.0），只是对于 nginx-1.12.2 以下版本，在编译时需要少许设置  
 Nginx 源代码可以从其官网获取限定版本，或者搜索 `index of nginx` 和 `index of php` 从开源网站获取指定版本
 
-- [Nginx 下载](http://nginx.org/en/download.html)
+- [Nginx Download](http://nginx.org/en/download.html)
 
 ------
 
@@ -21,7 +21,7 @@ sudo apt-get install libtool
 
 ## 安装 Nginx
 
-Nginx 源代码安装有两种方式：离线下载安装和在线下载安装，此处以在线下载安装为例，演示Nginx 的编译安装过程
+Nginx 源代码安装有两种方式：离线下载安装和在线下载安装，此处以在线下载安装为例，演示 Nginx 的编译安装过程
 
 ### 0x01 安装依赖库
 
@@ -50,7 +50,7 @@ tar -zxvf nginx-xxx.tar.gz
 cd nginx-xxx
 ```
 
-**Step 2**：进行编译安装（老版本编译安装会报错 `-Werror` 错误，在后面会给出[解决办法](#附录-1)）
+**Step 2**：进行编译安装（老版本编译安装会报错 `-Werror` 错误，在后面会给出[解决方法](#附录-1)）
 
 ```
 sudo ./configure
@@ -104,7 +104,7 @@ sudo vim /usr/local/nginx/conf/nginx.conf
 
 > 去除 `location ~ \.php$` 前的分号，并修改如下
 
-```
+```php
 location ~ \.php$ {
             root           html;
             fastcgi_pass   127.0.0.1:9000;
@@ -123,7 +123,7 @@ sudo /usr/local/nginx/sbin/nginx
 
 **Step 3**：访问本机地址，看到如下页面，表示 Nginx 安装成功
 
-![nginx_php_0001](https://github.com/GHlyanin/Environmental-construction/blob/master/Ubuntu_nginx_php/image/nginx_php_0001.PNG)
+![nginx_0001](https://github.com/GHlyanin/Environmental-construction/blob/master/Nginx/image/nginx_0001.PNG)
 
 ------
 
@@ -156,6 +156,7 @@ make: *** [build] Error 2
 ```
 
 **解决方法**：  
+
 **Step 1**：在解压目录下正常配置
 
 ```
