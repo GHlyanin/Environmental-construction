@@ -53,7 +53,7 @@ tar -zxvf nginx-xxx.tar.gz
 cd nginx-xxx
 ```
 
-**Step 2**：进行编译安装（老版本编译安装会报错 `-Werror` 错误，在后面会给出[解决方法](#附录-1)）
+**Step 2**：进行编译安装（老版本编译安装会报 `-Werror` 错误，解决方法参考[附录 1](#附录-1)）
 
 ```
 sudo ./configure
@@ -117,7 +117,7 @@ location ~ \.php$ {
         }
 ```
 
-**Step 2**：配置修改之后，对配置文件的语法进行检查，并开启 Nginx服务（[Nginx 常用命令](#附录-2)）
+**Step 2**：配置修改之后，对配置文件的语法进行检查，并开启 Nginx服务（Nginx 常用命令参考[附录 2](#附录-2)）
 
 ```
 sudo /usr/local/nginx/sbin/nginx -t
