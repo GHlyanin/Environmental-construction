@@ -2,7 +2,7 @@
 
 ![nginx_0002](https://github.com/GHlyanin/Environmental-construction/blob/master/Nginx/image/nginx_0002.svg)![nginx_0003](https://github.com/GHlyanin/Environmental-construction/blob/master/Nginx/image/nginx_0003.svg)![nginx_0004](https://github.com/GHlyanin/Environmental-construction/blob/master/Nginx/image/nginx_0004.svg)
 
-[Nginx](http://nginx.org/en/) 是一款轻量级的、开源的、高性能的 HTTP 服务器和反向代理服务器，本文主要介绍 Nginx 在 [Ubuntu 18.04.2](https://www.ubuntu.com/download/desktop) 系统中的编译安装过程，经测试该过程适应目前 Nginx 官网所有下载版本（nginx-0.5.38 至 nginx-1.16.0），只是对于 nginx-1.12.2 以下版本，在编译时需要少许设置
+[Nginx](http://nginx.org/en/) 是一款轻量级的、开源的、高性能的 HTTP 服务器和反向代理服务器，本文主要介绍 Nginx 在 Ubuntu 18.04.2 系统中的编译安装过程，经测试该过程适应目前 Nginx 官网所有下载版本（nginx-0.5.38 至 nginx-1.16.0），只是对于 nginx-1.12.2 以下版本，在编译时需要少许设置
 
 Nginx 源代码可以从其官网获取限定版本，或者搜索 `index of nginx` 和 `index of php` 从开源网站获取指定版本
 
